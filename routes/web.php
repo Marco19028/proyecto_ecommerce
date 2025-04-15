@@ -30,17 +30,6 @@ Route::group(['middleware' => ['auth', 'esAdmin']], function () {
     Route::get('/admin/productos/{id}/editar', [ProductoController::class, 'edit'])->name('admin.productos.edit');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
-    Route::resource('/admin/categorias', CategoriaController::class)->except(['show']);
-    Route::resource('/admin/etiquetas', EtiquetaController::class)->except(['show']);
-    Route::get('/admin/pedidos', [PedidoController::class, 'index'])->name('admin.pedidos.index');
-    Route::get('/admin/pedidos/{id}', [PedidoController::class, 'show'])->name('admin.pedidos.show');
-    Route::put('/admin/pedidos/{id}/estado', [PedidoController::class, 'actualizarEstado'])->name('admin.pedidos.estado');
-    Route::get('/admin/usuarios', [UserController::class, 'index'])->name('admin.usuarios.index');
-    Route::put('/admin/usuarios/{id}/rol', [UserController::class, 'actualizarRol'])->name('admin.usuarios.rol');
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/reportes/ventas', [ReporteController::class, 'ventas'])->name('admin.reportes.ventas');
-    Route::get('/admin/reportes/productos', [ReporteController::class, 'productos'])->name('admin.reportes.productos');
-    Route::get('/admin/auditoria', [AuditoriaController::class, 'index'])->name('admin.auditoria.index');
 });
 
 Route::middleware('auth')->group(function () {
