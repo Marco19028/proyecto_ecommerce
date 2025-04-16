@@ -19,10 +19,14 @@ class ProductoController extends Controller
 
     public function create()
     {
-        $categorias = Categoria::all();
-        $etiquetas = Etiqueta::all();
-        return view('productos.create', compact('categorias', 'etiquetas'));
+        if (auth()->user()->role !== 'admin') {
+        abort(403, 'Acceso no autorizado');
     }
+    $categorias = Categoria::all();
+    $etiquetas = Etiqueta::all();
+    return view('productos.create', compact('categorias', 'etiquetas'));
+    }
+
 
     public function store(Request $request)
     {
